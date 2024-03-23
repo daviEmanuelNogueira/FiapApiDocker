@@ -1,0 +1,7 @@
+﻿apiVersion: v1
+kind: Service
+metadata: 
+    name: externalname-service
+spec:
+    type: LoadBalancer
+    externalName: example.com

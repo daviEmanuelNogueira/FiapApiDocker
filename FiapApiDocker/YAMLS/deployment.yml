@@ -1,0 +1,35 @@
+﻿apiVersion: apps/v1
+kind: Deployment
+metadata:
+    name: fiapapipod
+spec:
+    replicas: 1
+    selector:
+        matchLabels:
+            app: fiapapipod
+    template:
+        metadata:
+            labels:
+                app: fiapapipod
+        spec:
+            containers:
+                - name: fiapapipod
+                  image: daviemanuell/fiapapidocker:latest
+                  ports:
+                    - containerPort: 80
+
+---
+
+apiVersion: v1
+kind: Service
+metadata:
+    name: fiapapipod-service
+spec:
+    selector:
+        app: fiapapipod
+    ports:
+        - protocol: TCP
+          port: 80
+          targetPort: 80
+    type: LoadBalancer
+            
